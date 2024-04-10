@@ -43,17 +43,25 @@ public class App {
     }
 
     private void initialize() {
-        //TODO: Initialisierungen hier durchführen
+        System.out.println("Willkommen beim Grafik-Generator!");
+        System.out.println();
+        // Verzögerung bis zur nächsten Ausgabe
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 
     private void readUserInput() {
-        //TODO: Alle Eingaben der Benutzer einlesen
         inputFigure();
         }
 
 
     private void updateState() {
-        //TODO: Benutzereingaben verarbeiten
 
         switch (figureNr) {
             case 1:
@@ -80,17 +88,15 @@ public class App {
     }
 
     private void printState() {
-        //TODO: Ausgabe des aktuellen Zustands
         if (figure != null) {
             output.println(figure);
         }
     }
 
     private void inputFigure() {
-        // Hier sehen Sie ein Pattern für Benutzereingaben
         // Solange kein gültiger Wert eingegeben wurde, wird die Eingabe wiederholt
         do {
-            output.println("Welche Grafik möchten Sie anzeigen (1-6)");
+            output.println("Welche Grafik möchten Sie anzeigen? (1-6)");
             figureNr = input.nextInt();
             if (figureNr < 1 || figureNr > 6) {
                 output.println("Dies ist keine gültige Grafik!");
