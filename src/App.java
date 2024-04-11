@@ -30,10 +30,10 @@ public class App {
             updateState();
             printState();
             //Exit Abfrage
-            System.out.println("Möchten Sie das Programm beenden? J/N ?");
+            output.println("Möchten Sie das Programm beenden? J/N ?");
             String wantExit = input.next();
             while (!wantExit.equals("J") && !wantExit.equals("N")) {
-                System.out.println("Bitte geben Sie eine gültige Antwort ein: [J]a / [N]ein ");
+                output.println("Bitte geben Sie eine gültige Antwort ein: [J]a / [N]ein ");
                 wantExit = input.next();
             }
             if (wantExit.equals("J")) {
@@ -43,8 +43,8 @@ public class App {
     }
 
     private void initialize() {
-        System.out.println("Willkommen beim Grafik-Generator!");
-        System.out.println();
+        output.println("Willkommen beim Grafik-Generator!");
+        output.println();
         // Verzögerung bis zur nächsten Ausgabe
         try
         {
