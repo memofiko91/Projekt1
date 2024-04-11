@@ -12,6 +12,7 @@ public class App {
     private int figureSize;
     private Figure figure;
 
+
     // Konstruktor
     // input wird verwendet um Daten vom Benutzer einzulesen (verwendet scanner)
     // output wird verwendet um Text auf der Konsole auszugeben (verwendet sysout)
@@ -20,16 +21,18 @@ public class App {
         this.output = output;
     }
 
-    //die Gameloop
+
+    // -- die Gameloop --
     public void Run() {
         initialize();
         printState();
 
         while (!exit) {
+            // SChleife wird wiederholt solange User das Programm nicht beenden möchte
             readUserInput();
             updateState();
             printState();
-            //Exit Abfrage
+            //Exit Abfrage nach jeder Figurausgabe
             output.println("Möchten Sie das Programm beenden? J/N ?");
             String wantExit = input.next();
             while (!wantExit.equalsIgnoreCase("J") && !wantExit.equalsIgnoreCase("N")) {
@@ -42,6 +45,7 @@ public class App {
         }
     }
 
+
     private void initialize() {
         output.println("Willkommen beim Grafik-Generator!");
         output.println();
@@ -53,6 +57,7 @@ public class App {
         }
     }
 
+
     private void readUserInput() {
         // Art und Größe der Figur werden vom Benutzer eingelesen
         inputFigure();
@@ -61,7 +66,7 @@ public class App {
 
 
     private void updateState() {
-
+        // gewählte Figur wird mit gewählter Größe erstellt
         switch (figureNr) {
             case 1:
                 figure = new FigureH(figureSize);
@@ -86,11 +91,13 @@ public class App {
         }
     }
 
+
     private void printState() {
         if (figure != null) {
             output.println(figure);
         }
     }
+
 
     private void inputFigure() {
         // Solange kein gültiger Wert eingegeben wurde, wird die Eingabe wiederholt (nur Zahlen!!)
