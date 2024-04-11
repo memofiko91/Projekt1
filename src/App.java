@@ -32,11 +32,11 @@ public class App {
             //Exit Abfrage
             output.println("Möchten Sie das Programm beenden? J/N ?");
             String wantExit = input.next();
-            while (!wantExit.equals("J") && !wantExit.equals("N")) {
+            while (!wantExit.equalsIgnoreCase("J") && !wantExit.equalsIgnoreCase("N")) {
                 output.println("Bitte geben Sie eine gültige Antwort ein: [J]a / [N]ein ");
                 wantExit = input.next();
             }
-            if (wantExit.equals("J")) {
+            if (wantExit.equalsIgnoreCase("J")) {
                 exit = true;
             }
         }
@@ -46,19 +46,18 @@ public class App {
         output.println("Willkommen beim Grafik-Generator!");
         output.println();
         // Verzögerung bis zur nächsten Ausgabe
-        try
-        {
+        try {
             Thread.sleep(2000);
-        }
-        catch(InterruptedException ex)
-        {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
     private void readUserInput() {
+        // Art und Größe der Figur werden vom Benutzer eingelesen
         inputFigure();
-        }
+        inputSize();
+    }
 
 
     private void updateState() {
@@ -94,13 +93,22 @@ public class App {
     }
 
     private void inputFigure() {
-        // Solange kein gültiger Wert eingegeben wurde, wird die Eingabe wiederholt
+        // Solange kein gültiger Wert eingegeben wurde, wird die Eingabe wiederholt (nur Zahlen!!)
         do {
             output.println("Welche Grafik möchten Sie anzeigen? (1-6)");
             figureNr = input.nextInt();
             if (figureNr < 1 || figureNr > 6) {
                 output.println("Dies ist keine gültige Grafik!");
+            } else {
+                break;
             }
+        } while (true);
+    }
+
+
+    private void inputSize() {
+        // Solange kein gültiger Wert eingegeben wurde, wird die Eingabe wiederholt (nur Zahlen!!)
+        do {
             output.println("Bitte wählen Sie eine Größe (1-3)");
             figureSize = input.nextInt();
             if (figureSize < 1 || figureSize > 3) {
@@ -108,8 +116,6 @@ public class App {
             } else {
                 break;
             }
-        }
-        while (true) ;
+        } while (true);
     }
-
 }
