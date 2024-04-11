@@ -61,10 +61,7 @@ image::images/p5.PNG[]
 
 
 
-*API-Doku*
-[%hardbreaks]
-Die einzelnen Figuren werden in den entsprechenden Klassen generiert, die alle von der Superklasse `Figure` erben. Geerbt wird ein zweidimensionales Array, welches aus einem 3x3 Feld besteht. Es kann also pro Zeile und Spalte je 3 Zeichen des Typs `char` speichern.
-Die Größe wird als Attribut `size` nicht von der Superklasse geerbt, sondern über die Usereingabe konfiguriert, welche zuvor in der Variable `figureSize` gespeichert wird.
+#*API-Dokumentation*#
 
 [%hardbreaks]
 Bei Programmstart wird ein Scanner erstellt und die Datei `App` ausgeführt. Die Methode `Run`R, die eigentliche Game Loop, wird gestartet:
@@ -86,3 +83,28 @@ Wird kein Zahlenwert eingegeben, sondern ein anderes Zeichen, wie z.B. ein Buchs
 Wird der Game Loop beendet, springt das Programm zurück in die `Main` und ruft die Methode `input.close` auf. Es kann keine Eingabe vom User mehr erfolgen. Das Programm ist beendet und abschließend wird noch eine entsprechende Meldung ausgegeben.
 
 
+[.underline]#Superklasse Figure#
+
+Die einzelnen Figuren werden in den entsprechenden Klassen generiert, die alle von der Superklasse `Figure` erben. Die Klasse enthält ein bereits initialisiertes, zweidimensionales Array `symbol`, welches aus einem 3x3 Feld besteht. Es kann also pro Zeile und Spalte je 3 Zeichen des Typs `char` speichern.
+Ebenso enthält die Klasse das Attribut `size`, welches die Größe der Figur als Wert übernehmen kann. Dieses wird über die Usereingabe konfiguriert, welche zuvor in der Variable `figureSize` gespeichert wird. Über den Konstruktor wird also nur die Größe erstellt. Dieser kann von den Unterklassen aufgerufen werden.
+
+Weiters enthält die Klasse die `toString` Methode, welche von den Unterklassen überschrieben werden kann. #ERKLÄRUNG!!!#
+
+[.underline]#Unterklassen#
+
+Folgende Unterklassen werden im Programm verwendet:
+
+--  FigureH
+
+--  FigureI
+
+--  FigureL
+
+--  FigureMinus
+
+--  FigureO
+
+--  FigureO2
+
+[%hardbreaks]
+Alle Unterklassen erben das Array `symbol` der Superklasse und greifen über den Konstruktor `super(size)` auf den Superkonstruktor zu, durch den die Variable `size` erstellt wird. Im klasseneigenen Konstruktor wird außerdem das geerbte Array `symbol` mit dem jeweiligen Figuren-Muster befüllt. Der jeweilige Index wird mit dem `char` Wert 'X' befüllt.
