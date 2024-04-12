@@ -10,6 +10,8 @@ public abstract class Figure {
 
 
     @Override
+    /* erstellt eine String-Repräsentation eines 3x3-Symbolrasters
+       Anzahl der Wiederholungen jedes Symbols basiert auf Wert von size */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         switch (size) {

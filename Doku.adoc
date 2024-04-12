@@ -6,6 +6,8 @@ Der Grafik-Generator bietet die Möglichkeit unterschiedliche grafische
 Figuren anzuzeigen. Der User kann die Art und Größe der Figur festlegen.
 Hierbei kann zwischen 6 Figuren und je 3 Größen gewählt werden.
 
+---
+
 
 [.underline]#Folgende Figuren stehen zur Auswahl:#
 
@@ -30,6 +32,8 @@ Hierbei kann zwischen 6 Figuren und je 3 Größen gewählt werden.
 `2` - Mittel
 
 `3` - Groß
+
+---
 
 [%hardbreaks]
 Zu Beginn wird der User nach der Grafik gefragt, die er anzeigen lassen möchte. Hier muss eine Zahl zwischen 1 und 6 eingegeben werden. Wird eine andere Zahl eingegeben, erfolgt ein Hinweis darauf, dass dies keine gültige Eingabe ist und fragt erneut nach der gewünschten Grafik. Dieser Vorgang wird so lange wiederholt, bis eine gültige Zahl eingegeben wird.
@@ -59,7 +63,7 @@ Bei Eingabe 'N' wird das Programm wie gewohnt fortgesetzt. Der User kann wieder 
 
 image::images/p5.PNG[]
 
-
+---
 
 #*API-Dokumentation*#
 
@@ -77,18 +81,29 @@ Wird kein Zahlenwert eingegeben, sondern ein anderes Zeichen, wie z.B. ein Buchs
 
 5. Aufruf der Methode `printState`: Da das Objekt nun einen Wert besitzt, wird es ausgegeben. Der User bekommt das gewünschte Objekt in Ascii-Code angezeigt.
 
-6. Exit-Abfrage: der User wird gefragt, ob er das Programm beenden möchte. Der Input wird in die Variable `wantExit` eingelesen. Anschließend wird in einer while-Schleife die Gültigkeit der Eingabe geprüft. Ist die Eingabe ungültig, also weder 'J' oder 'j' noch 'N' oder 'n', so folgt eine entsprechende Ausgabe und erneute Aufforderung an den User. Bei gültiger Eingabe wird mit einer if-Abfrage geprüft, ob der Buchstabe 'J' eingegeben wurde. Ist dies der Fall, wird die Variable `exit` auf 'true' gesetzt. Hiermit wird die while-Schleife und damit der Game Loop beendet. Entspricht der Input nicht 'J', so muss er automatisch 'N' sein, daher bleibt der Wert der Variable `exit` unverändert und somit weiterhin 'false'. Der Game Loop wird fortgesetzt.
+6. Exit-Abfrage: der User wird gefragt, ob er das Programm beenden möchte. Der Input wird in die Variable `wantExit` eingelesen. Anschließend wird in einer while-Schleife die Gültigkeit der Eingabe geprüft. Ist die Eingabe ungültig, also weder 'J' oder 'j' noch 'N' oder 'n', so folgt eine entsprechende Ausgabe und erneute Aufforderung an den User. Bei gültiger Eingabe wird mit einer if-Abfrage geprüft, ob der Buchstabe 'J' eingegeben wurde. Ist dies der Fall, wird die Variable `exit` auf 'true' gesetzt. Hiermit wird die while-Schleife und damit die Game Loop beendet. Entspricht der Input nicht 'J', so muss er automatisch 'N' sein, daher bleibt der Wert der Variable `exit` unverändert und somit weiterhin 'false'. Die Game Loop wird fortgesetzt.
 
 [%hardbreaks]
-Wird der Game Loop beendet, springt das Programm zurück in die `Main` und ruft die Methode `input.close` auf. Es kann keine Eingabe vom User mehr erfolgen. Das Programm ist beendet und abschließend wird noch eine entsprechende Meldung ausgegeben.
+Wird die Game Loop beendet, springt das Programm zurück in die `Main` und ruft die Methode `input.close` auf. Es kann keine Eingabe vom User mehr erfolgen. Das Programm ist beendet und abschließend wird noch eine entsprechende Meldung ausgegeben.
 
+---
 
 [.underline]#Superklasse Figure#
 
 Die einzelnen Figuren werden in den entsprechenden Klassen generiert, die alle von der Superklasse `Figure` erben. Die Klasse enthält ein bereits initialisiertes, zweidimensionales Array `symbol`, welches aus einem 3x3 Feld besteht. Es kann also pro Zeile und Spalte je 3 Zeichen des Typs `char` speichern.
 Ebenso enthält die Klasse das Attribut `size`, welches die Größe der Figur als Wert übernehmen kann. Dieses wird über die Usereingabe konfiguriert, welche zuvor in der Variable `figureSize` gespeichert wird. Über den Konstruktor wird also nur die Größe erstellt. Dieser kann von den Unterklassen aufgerufen werden.
 
-Weiters enthält die Klasse die `toString` Methode, welche von den Unterklassen überschrieben werden kann. #ERKLÄRUNG!!!#
+Weiters enthält die Klasse die `toString` Methode, welche von den Unterklassen überschrieben werden kann. Sie erstellt einen StringBuilder (sb), um ein 3x3-Symbolraster aufzubauen, in welchem die mittels einer for-Schleife erstellte Figur gespeichert wird. Um den Wert der Variable `size` zu prüfen, wird ein switch-Statement verwendet. Für jeden case werden verschiedene Schleifen verwendet, um die Zeichen des Rasters in den StringBuilder hinzuzufügen.
+
+_case 1:_ jedes Zeichen im Array wird einmal durchlaufen und in den StringBuilder eingefügt. Am Ende jeder Reihe wird in eine neue Zeile gewechselt.
+
+_case 2:_ jedes Zeichen im Array wird zweimal durchlaufen und 2x in den StringBuilder eingefügt.
+
+__case 3: __jedes Zeichen im Array wird dreimal durchlaufen und 3x in den StringBuilder eingefügt.
+
+Nachdem der StringBuilder mit den Symbolen gefüllt wurde, wird sein Inhalt mit toString() in einen String umgewandelt und zurückgegeben.
+
+---
 
 [.underline]#Unterklassen#
 
@@ -108,3 +123,5 @@ Folgende Unterklassen werden im Programm verwendet:
 
 [%hardbreaks]
 Alle Unterklassen erben das Array `symbol` der Superklasse und greifen über den Konstruktor `super(size)` auf den Superkonstruktor zu, durch den die Variable `size` erstellt wird. Im klasseneigenen Konstruktor wird außerdem das geerbte Array `symbol` mit dem jeweiligen Figuren-Muster befüllt. Der jeweilige Index wird mit dem `char` Wert 'X' befüllt.
+
+
